@@ -226,6 +226,127 @@ namespace BillCafe
                 Console.WriteLine("Everything has been cleared");
             }
         }
+        private static void TipMethod()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("Bill is empty!");
+                return;
+            }
+            Console.WriteLine($"Net Total: {GetPrice():C}");
+            Console.WriteLine("1 - Percent");
+            Console.WriteLine("2 - Amount");
+            Console.WriteLine("3 - No Tip");
+            Console.WriteLine("0 - Return to main menu");
+            do
+            {
+                Console.WriteLine("Enter your choice");
+                int tipMethod = Convert.ToInt32(Console.ReadLine());
+                switch (tipMethod) {
+                    case 0:
+                        {
+                            Console.WriteLine("Going back.");
+                            return;
+                        }
+                    case 1:
+                        { 
+                            TipAdding(tipMethod); 
+                            break;
+                        }
+                    case 2:
+                        {
+                            TipAdding(tipMethod);
+                            break;
+                        }
+                    case 3:
+                        {
+                            TipAdding(tipMethod);
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("An error has occured.");
+                            break;
+                        }
+                }
+            }while (true);
+        }
+        private static void TipAdding(int tipMethod) {
+            switch (tipMethod) {
+                case 1:
+                    {
+                        Console.WriteLine("Enter percent or choose from pattern ");
+                        Console.WriteLine("1 - 10%");
+                        Console.WriteLine("2 - 25%");
+                        Console.WriteLine("3 - 30%");
+                        Console.WriteLine("4 - Personal Input");
+                        Console.WriteLine("Enter your choice");
+                        int percentType = Convert.ToInt32(Console.ReadLine());
+                        int percent = 0;
+                        switch (percentType)
+                        {
+                            case 1:
+                                {
+                                    percent = 10;
+                                    break;
+                                }
+                                case 2:
+                                {
+                                    percent = 25;
+                                    break;
+                                }
+                                case 3:
+                                {
+                                    percent = 30;
+                                    break;
+                                }
+                                case 4:
+                                {
+                                    do
+                                    {
+                                        Console.WriteLine("Enter tip amount: ");
+                                        percent = Convert.ToInt32(Console.ReadLine());
+                                    }while( percent < 0);
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                               
+                        }
+                        tipAmount =  GetPrice() * (percent / 100.0);
+                        Console.WriteLine("Tip with amount " + tipAmount + " added it equals " + percent + "%") ;
+                        break;
+                    }
+                case 2:
+                    {
+                        do
+                        {
+
+                            Console.WriteLine("Enter tip amount ");
+                            tipAmount = Convert.ToDouble(Console.ReadLine());
+
+                        } while (tipAmount < 0);
+                        Console.WriteLine("Tip added " + tipAmount);
+                        break;
+                    }
+                case 3:
+                    {
+                        tipAmount = 0;
+                        Console.WriteLine("Tip equals 0.");
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("An error has occured ");
+                        break;
+                    }
+
+
+
+            }
+        }
     }
     }
 
