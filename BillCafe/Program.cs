@@ -140,79 +140,80 @@ namespace BillCafe
             {
                 Console.WriteLine("Error while adding the product" + ex.Message);
             }
-            static void DeleteProduct()
-            {
-                if (products.Length == 0)
-                {
-                    Console.WriteLine("There are no items to delete.");
-                    return;
-                }
-
-                if (tipAmount != 0)
-                {
-                    Console.WriteLine("Tip will be reset to 0.");
-                }
-
-                Console.WriteLine("List of items:");
-                Console.WriteLine(new string('-', 40));
-
-                for (int i = 0; i < products.Length; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {products[i]} - {prices[i]:F2}$");
-                }
-
-                Console.WriteLine("\n0. Cancel");
-                Console.WriteLine(new string('-', 40));
-
-                Console.Write("Enter the number of the item to delete: ");
-                string input = Console.ReadLine();
-                if (!int.TryParse(input, out int choice) || choice < 0 || choice > products.Length)
-                {
-                    Console.WriteLine("Invalid input. Operation cancelled.");
-                    return;
-                }
-
-                if (choice == 0)
-                {
-                    Console.WriteLine("Deletion cancelled.");
-                    return;
-                }
-
-                string result = RemoveProduct(choice - 1);
-                Console.WriteLine(result);
-
-                if (products.Length > 0)
-                {
-                    TipMethod();
-                }
-
-            }
-            static string RemoveProduct(int index)
-            {
-                if (index < 0 || index >= products.Length)
-                {
-                    return "Invalid selection.";
-                }
-
-                string deletedName = products[index];
-                double deletedCost = prices[index];
-
-                for (int i = index; i < products.Length - 1; i++)
-                {
-                    products[i] = products[i + 1];
-                    prices[i] = prices[i + 1];
-                }
-
-                Array.Resize(ref products, products.Length - 1);
-                Array.Resize(ref prices, prices.Length - 1);
-
-
-
-
-                return $"Deleted '{deletedName}' with price {deletedCost:F2}$.";
-            }
+           
         }
-            private static void ClearAll()
+        static void DeleteProduct()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("There are no items to delete.");
+                return;
+            }
+
+            if (tipAmount != 0)
+            {
+                Console.WriteLine("Tip will be reset to 0.");
+            }
+
+            Console.WriteLine("List of items:");
+            Console.WriteLine(new string('-', 40));
+
+            for (int i = 0; i < products.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {products[i]} - {prices[i]:F2}$");
+            }
+
+            Console.WriteLine("\n0. Cancel");
+            Console.WriteLine(new string('-', 40));
+
+            Console.Write("Enter the number of the item to delete: ");
+            string input = Console.ReadLine();
+            if (!int.TryParse(input, out int choice) || choice < 0 || choice > products.Length)
+            {
+                Console.WriteLine("Invalid input. Operation cancelled.");
+                return;
+            }
+
+            if (choice == 0)
+            {
+                Console.WriteLine("Deletion cancelled.");
+                return;
+            }
+
+            string result = RemoveProduct(choice - 1);
+            Console.WriteLine(result);
+
+            if (products.Length > 0)
+            {
+                TipMethod();
+            }
+
+        }
+        static string RemoveProduct(int index)
+        {
+            if (index < 0 || index >= products.Length)
+            {
+                return "Invalid selection.";
+            }
+
+            string deletedName = products[index];
+            double deletedCost = prices[index];
+
+            for (int i = index; i < products.Length - 1; i++)
+            {
+                products[i] = products[i + 1];
+                prices[i] = prices[i + 1];
+            }
+
+            Array.Resize(ref products, products.Length - 1);
+            Array.Resize(ref prices, prices.Length - 1);
+
+
+
+
+            return $"Deleted '{deletedName}' with price {deletedCost:F2}$.";
+        }
+        private static void ClearAll()
         {
             if (products.Length == 0)
             {
