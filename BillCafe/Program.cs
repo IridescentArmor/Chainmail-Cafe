@@ -100,7 +100,7 @@ namespace BillCafe
                 }
             } while (true);
         }
-            private static void AddProduct()
+        private static void AddProduct()
         {
             if (products.Length >= 5)
             {
@@ -212,5 +212,20 @@ namespace BillCafe
                 return $"Deleted '{deletedName}' with price {deletedCost:F2}$.";
             }
         }
+            private static void ClearAll()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("Nothing to clear.");
+            }
+            else
+            {
+                products = [];
+                prices = [];
+                tipAmount = 0;
+                Console.WriteLine("Everything has been cleared");
+            }
+        }
     }
-}
+    }
+
