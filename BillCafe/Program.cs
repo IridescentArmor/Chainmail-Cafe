@@ -394,7 +394,99 @@ namespace BillCafe
             Console.WriteLine("{0,-40} {1,10:C}", "GST Amount:", GST());
             Console.WriteLine("{0,-40} {1,10:C}", "Total Amount:", TotalPrice());
         }
+        private static void SaveToFile()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("There is nothing to save.");
+                return;
+            }
+            Console.WriteLine("Enter file to save");
+            string filePath = Console.ReadLine();
+            if (filePath.Length > 10 || filePath.Length < 1)
+            {
+                return;
+            }
+            filePath = filePath + ".txt";
+
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine($"File '{filePath}' exists. Overwrite? 1 = yes | 2 = no.");
+                int overwrite = Convert.ToInt32(Console.ReadLine());
+                if (overwrite == 2)
+                {
+                    Console.WriteLine("Saving cancelled.");
+                    return;
+                }
+            }
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    for (int i = 0; i < products.Length; i++)
+                    {
+                        writer.WriteLine(products[i] + " « " + prices[i]);
+                    }
+                    writer.WriteLine("Tip = " + tipAmount);
+                }
+                Console.WriteLine($"Data saved successfully to '{filePath}'.");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error has occured " + ex.Message);
+            }
+        }
+        private static void LoadFromFile()
+        {
+            Console.WriteLine("Enter file name to load:");
+            string filePath = Console.ReadLine();
+            filePath = filePath + ".txt";
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine($"File '{filePath}' does not exist.");
+                return;
+            }
+
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                if (lines.Length == 0)
+                {
+                    Console.WriteLine($"File '{filePath}' is empty.");
+                    return;
+                }
+
+                products = new string[0];
+                prices = new double[0];
+
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split('\t');
+                    if (parts.Length == 2)
+                    {
+                        Array.Resize(ref products, products.Length + 1);
+                        Array.Resize(ref prices, prices.Length + 1);
+                        products[products.Length - 1] = parts[0];
+                        prices[prices.Length - 1] = double.Parse(parts[1]);
+                    }
+                }
+
+                Console.WriteLine($"Data loaded successfully from '{filePath}'.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading file: " + ex.Message);
+            }
+        }
+
+
+
     }
-    }
+}
+            
+    
     
 
