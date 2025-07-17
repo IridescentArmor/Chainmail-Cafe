@@ -271,8 +271,10 @@ namespace BillCafe
                 }
             }while (true);
         }
-        private static void TipAdding(int tipMethod) {
-            switch (tipMethod) {
+        private static void TipAdding(int tipMethod)
+        {
+            switch (tipMethod)
+            {
                 case 1:
                     {
                         Console.WriteLine("Enter percent or choose from pattern ");
@@ -290,33 +292,33 @@ namespace BillCafe
                                     percent = 10;
                                     break;
                                 }
-                                case 2:
+                            case 2:
                                 {
                                     percent = 25;
                                     break;
                                 }
-                                case 3:
+                            case 3:
                                 {
                                     percent = 30;
                                     break;
                                 }
-                                case 4:
+                            case 4:
                                 {
                                     do
                                     {
                                         Console.WriteLine("Enter tip amount: ");
                                         percent = Convert.ToInt32(Console.ReadLine());
-                                    }while( percent < 0);
+                                    } while (percent < 0);
                                     break;
                                 }
                             default:
                                 {
                                     break;
                                 }
-                               
+
                         }
-                        tipAmount =  GetPrice() * (percent / 100.0);
-                        Console.WriteLine("Tip with amount " + tipAmount + " added it equals " + percent + "%") ;
+                        tipAmount = GetPrice() * (percent / 100.0);
+                        Console.WriteLine("Tip with amount " + tipAmount + " added it equals " + percent + "%");
                         break;
                     }
                 case 2:
@@ -347,6 +349,29 @@ namespace BillCafe
 
             }
         }
+            private static double GetPrice()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("Bill is empty.");
+                return -1;
+            }
+            double totalPrice = 0;
+            foreach (double price in prices)
+            {
+                totalPrice += price;
+            }
+            return totalPrice;
+        }
+        private static double GST()
+        {
+            return GetPrice() * 0.05;
+        }
+        private static double TotalPrice()
+        {
+            return GetPrice() + GST() + tipAmount;
+        }
     }
     }
+    
 
