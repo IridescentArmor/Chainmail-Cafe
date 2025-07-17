@@ -371,6 +371,29 @@ namespace BillCafe
         {
             return GetPrice() + GST() + tipAmount;
         }
+        private static void DisplayProducts()
+        {
+            if (products.Length == 0)
+            {
+                Console.WriteLine("The bill is empty!");
+                return;
+            }
+
+            Console.WriteLine("{0,-40} {1,10}", "Description", "Price");
+            Console.WriteLine(new string('-', 52));
+
+            for (int i = 0; i < products.Length; i++)
+            {
+                Console.WriteLine("{0,-40} {1,10:C}", products[i], prices[i]);
+            }
+
+            Console.WriteLine(new string('-', 52));
+
+            Console.WriteLine("{0,-40} {1,10:C}", "NetTotal:", GetPrice());
+            Console.WriteLine("{0,-40} {1,10:C}", "Tip Amount:", tipAmount);
+            Console.WriteLine("{0,-40} {1,10:C}", "GST Amount:", GST());
+            Console.WriteLine("{0,-40} {1,10:C}", "Total Amount:", TotalPrice());
+        }
     }
     }
     
