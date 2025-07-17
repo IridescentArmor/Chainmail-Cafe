@@ -1,10 +1,14 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 
 namespace BillCafe
 {
     internal class Program
     {
+        private static string[] products = new string[0];
+        private static double[] prices = new double[0];
+        private static double tipAmount = 0;
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -95,7 +99,47 @@ namespace BillCafe
                     Console.WriteLine("Error has occured" + ex.Message);
                 }
             } while (true);
+        }
+            private static void AddProduct()
+        {
+            if (products.Length >= 5)
+            {
+                Console.WriteLine("Items quantity limit is 5!");
+                return;
+            }
+            string productName;
+            double price;
+            do
+            {
+                Console.WriteLine("Enter product name from 3 to 20 symbols");
+                productName = Console.ReadLine();
+                if (productName.Length < 3 || productName.Length > 20 || string.IsNullOrWhiteSpace(productName))
+                {
+                    Console.WriteLine("Description must be in range of 3 to 20 symbols.");
+                }
 
+            } while (productName.Length < 3 || productName.Length > 20 || string.IsNullOrWhiteSpace(productName));
+
+            do
+            {
+                Console.WriteLine("Enter product price");
+                price = Convert.ToDouble(Console.ReadLine());
+            } while (price < 0);
+            try
+            {
+
+                int productsQuantity = products.Length;
+                Array.Resize(ref prices, productsQuantity + 1);
+                Array.Resize(ref products, productsQuantity + 1);
+                products[productsQuantity] = productName;
+                prices[productsQuantity] = price;
+                Console.WriteLine("Adding item was successfull.");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while adding the product" + ex.Message);
+            }
 
         }
     }
