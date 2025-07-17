@@ -406,7 +406,12 @@ namespace BillCafe
             string filePath = Console.ReadLine();
             if (filePath.Length > 10 || filePath.Length < 1)
             {
-                return;
+                do
+                {
+                    Console.WriteLine("Input does not fit into rules.");
+                    Console.WriteLine("Enter file to save");
+                    filePath = Console.ReadLine();
+                } while (filePath.Length > 10 || filePath.Length < 1);
             }
             filePath = filePath + ".txt";
 

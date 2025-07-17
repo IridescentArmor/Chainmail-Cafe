@@ -3,3 +3,13 @@ C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.Assembly
 C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.AssemblyInfo.cs
 C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.csproj.CoreCompileInputs.cache
 C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.sourcelink.json
+C:\Users\artem\source\repos\BillCafe\BillCafe\bin\Debug\net8.0\BillCafe.exe
+C:\Users\artem\source\repos\BillCafe\BillCafe\bin\Debug\net8.0\BillCafe.deps.json
+C:\Users\artem\source\repos\BillCafe\BillCafe\bin\Debug\net8.0\BillCafe.runtimeconfig.json
+C:\Users\artem\source\repos\BillCafe\BillCafe\bin\Debug\net8.0\BillCafe.dll
+C:\Users\artem\source\repos\BillCafe\BillCafe\bin\Debug\net8.0\BillCafe.pdb
+C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.dll
+C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\refint\BillCafe.dll
+C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.pdb
+C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\BillCafe.genruntimeconfig.cache
+C:\Users\artem\source\repos\BillCafe\BillCafe\obj\Debug\net8.0\ref\BillCafe.dll
