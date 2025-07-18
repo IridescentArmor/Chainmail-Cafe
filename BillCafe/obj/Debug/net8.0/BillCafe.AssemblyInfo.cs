@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BillCafe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7827a45407dfcc1c633de24f861f8d5f48300bdb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5836119a76891551542231385481110450de9bba")]
 [assembly: System.Reflection.AssemblyProductAttribute("BillCafe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BillCafe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

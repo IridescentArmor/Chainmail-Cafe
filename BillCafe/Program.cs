@@ -85,6 +85,7 @@ namespace BillCafe
                         case 0:
                             {
                                 Console.WriteLine("Bye! Bye!");
+                                return;
                                 break;
                             }
                         default:
