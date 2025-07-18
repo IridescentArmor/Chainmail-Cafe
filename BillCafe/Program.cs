@@ -96,7 +96,7 @@ namespace BillCafe
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error has occured" + ex.Message);
+                    Console.WriteLine("Error has occured " + ex.Message);
                 }
             } while (true);
         }
@@ -138,7 +138,7 @@ namespace BillCafe
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error while adding the product" + ex.Message);
+                Console.WriteLine("Error while adding the product " + ex.Message);
             }
            
         }
@@ -434,7 +434,7 @@ namespace BillCafe
                     {
                         writer.WriteLine(products[i] + " « " + prices[i]);
                     }
-                    writer.WriteLine("Tip = " + tipAmount);
+                    
                 }
                 Console.WriteLine($"Data saved successfully to '{filePath}'.");
 
@@ -470,7 +470,7 @@ namespace BillCafe
 
                 foreach (string line in lines)
                 {
-                    string[] parts = line.Split('\t');
+                    string[] parts = line.Split(" « ");
                     if (parts.Length == 2)
                     {
                         Array.Resize(ref products, products.Length + 1);
