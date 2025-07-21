@@ -392,7 +392,7 @@ namespace BillCafe
                         }
                         tipAmount = GetPrice() * (percent / 100.0);
                         Console.WriteLine("Tip with amount " + tipAmount + " added it equals " + percent + "%");
-                        Console.WriteLine("Invalid Input");
+                        Console.WriteLine("Returning to main menu...");
                         Console.WriteLine("Enter your choice");
                         break;
                     }
