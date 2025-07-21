@@ -92,11 +92,13 @@ namespace BillCafe
                             {
                                 Console.WriteLine("Bye! Bye!");
                                 return;
-                                break;
+                               
                             }
                         default:
                             {
                                 Console.WriteLine("Invalid Input");
+                                Console.WriteLine("Returning to main menu...");
+                                Console.WriteLine("Enter your choice");
                                 break;
                             }
                     }
@@ -130,6 +132,10 @@ namespace BillCafe
             {
                 Console.WriteLine("Enter product price");
                 string input = Console.ReadLine();
+                if (input.Contains(","))
+                {
+                  input =  input.Replace(",", ".");
+                }
                 if (double.TryParse(input, out price) && price >= 0)
                 {
                     break;
@@ -139,6 +145,7 @@ namespace BillCafe
                     Console.WriteLine("Invalid price. Try again.");
                 }
             }
+                
                 try
             {
                 int productsQuantity = products.Length;
@@ -147,6 +154,8 @@ namespace BillCafe
                 products[productsQuantity] = productName;
                 prices[productsQuantity] = price;
                 Console.WriteLine("Adding item was successful.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
             }
             catch (Exception ex)
             {
@@ -158,6 +167,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("There are no items to delete.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
 
@@ -182,12 +193,16 @@ namespace BillCafe
             if (!int.TryParse(input, out int choice) || choice < 0 || choice > products.Length)
             {
                 Console.WriteLine("Invalid input. Operation cancelled.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
 
             if (choice == 0)
             {
                 Console.WriteLine("Deletion cancelled.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
 
@@ -204,7 +219,10 @@ namespace BillCafe
         {
             if (index < 0 || index >= products.Length)
             {
-                return "Invalid selection.";
+                Console.WriteLine("Invalid selection.");
+                Console.WriteLine("Returning to main menu...");
+                
+                return "Enter your choice";
             }
 
             string deletedName = products[index];
@@ -229,6 +247,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("Nothing to clear.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
             }
             else
             {
@@ -236,6 +256,8 @@ namespace BillCafe
                 prices = [];
                 tipAmount = 0;
                 Console.WriteLine("Everything has been cleared");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
             }
         }
         private static void TipMethod()
@@ -243,6 +265,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("Bill is empty!");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
             Console.WriteLine($"Net Total: {GetPrice():C}");
@@ -264,6 +288,8 @@ namespace BillCafe
                     case 0:
                         {
                             Console.WriteLine("Going back.");
+                            Console.WriteLine("Returning to main menu...");
+                            Console.WriteLine("Enter your choice");
                             return;
                         }
                     case 1:
@@ -275,6 +301,8 @@ namespace BillCafe
                     default:
                         {
                             Console.WriteLine("An error has occured.");
+                            Console.WriteLine("Returning to main menu...");
+                            Console.WriteLine("Enter your choice");
                             break;
                         }
                 }
@@ -286,18 +314,25 @@ namespace BillCafe
             {
                 case 1:
                     {
+
                         Console.WriteLine("Enter percent or choose from pattern ");
                         Console.WriteLine("1 - 10%");
                         Console.WriteLine("2 - 25%");
                         Console.WriteLine("3 - 30%");
                         Console.WriteLine("4 - Personal Input");
                         Console.WriteLine("Enter your choice");
-                        string input = Console.ReadLine();
-                        if (!int.TryParse(input, out int percentType))
-                        {
-                            Console.WriteLine("Invalid input. Try again.");
-                            return;
-                        }
+                        
+                            string input = Console.ReadLine();
+                            if (!int.TryParse(input, out int percentType))
+                            {
+                                Console.WriteLine("Invalid input.");
+                                Console.WriteLine("Returning to main menu...");
+                                Console.WriteLine("Enter your choice");
+                                return;
+
+                            }
+                        
+                   
                         int percent = 0;
                         switch (percentType)
                         {
@@ -329,12 +364,13 @@ namespace BillCafe
                                                 break;
                                             Console.WriteLine("Invalid percentage. Try again.");
                                         }
-
                                     } while (percent < 0);
                                     break;
                                 }
+
                             default:
                                 {
+                                   
                                     break;
                                 }
 
@@ -361,17 +397,23 @@ namespace BillCafe
 
                         } while (tipAmount < 0);
                         Console.WriteLine("Tip added " + tipAmount);
+                        Console.WriteLine("Returning to main menu...");
+                        Console.WriteLine("Enter your choice");
                         break;
                     }
                 case 3:
                     {
                         tipAmount = 0;
                         Console.WriteLine("Tip equals 0.");
+                        Console.WriteLine("Returning to main menu...");
+                        Console.WriteLine("Enter your choice");
                         break;
                     }
                 default:
                     {
                         Console.WriteLine("An error has occured ");
+                        Console.WriteLine("Returning to main menu...");
+                        Console.WriteLine("Enter your choice");
                         break;
                     }
 
@@ -384,6 +426,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("Bill is empty.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return -1;
             }
             double totalPrice = 0;
@@ -406,6 +450,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("The bill is empty!");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
 
@@ -429,6 +475,8 @@ namespace BillCafe
             if (products.Length == 0)
             {
                 Console.WriteLine("There is nothing to save.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
             Console.WriteLine("Enter file to save");
@@ -451,12 +499,16 @@ namespace BillCafe
                 if (!int.TryParse(input, out int overwrite))
                 {
                     Console.WriteLine("Invalid input. Saving cancelled.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
                     return;
                 }
 
                 if (overwrite == 2)
                 {
                     Console.WriteLine("Saving cancelled.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
                     return;
                 }
             }
@@ -477,6 +529,8 @@ namespace BillCafe
             catch (Exception ex)
             {
                 Console.WriteLine("Error has occured " + ex.Message);
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
             }
         }
         private static void LoadFromFile()
@@ -497,6 +551,8 @@ namespace BillCafe
                 if (lines.Length == 0)
                 {
                     Console.WriteLine($"File '{filePath}' is empty.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
                     return;
                 }
 
@@ -520,6 +576,9 @@ namespace BillCafe
             catch (Exception ex)
             {
                 Console.WriteLine("Error loading file: " + ex.Message);
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
+                return ;
             }
         }
 
