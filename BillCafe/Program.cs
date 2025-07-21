@@ -392,6 +392,8 @@ namespace BillCafe
                         }
                         tipAmount = GetPrice() * (percent / 100.0);
                         Console.WriteLine("Tip with amount " + tipAmount + " added it equals " + percent + "%");
+                        Console.WriteLine("Invalid Input");
+                        Console.WriteLine("Enter your choice");
                         break;
                     }
                 case 2:
@@ -543,6 +545,8 @@ namespace BillCafe
                     
                 }
                 Console.WriteLine($"Data saved successfully to '{filePath}'.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
 
             }
             catch (Exception ex)
@@ -554,53 +558,69 @@ namespace BillCafe
         }
         private static void LoadFromFile()
         {
-            Console.WriteLine("Enter file name to load:");
-            string filePath = Console.ReadLine();
-            filePath = filePath + ".txt";
-            if (!File.Exists(filePath))
+            string filePath;
+            while (true)
             {
-                Console.WriteLine($"File '{filePath}' does not exist.");
-                Console.WriteLine("Returning to main menu...");
-                Console.WriteLine("Enter your choice");
-                return;
-            }
-
-            try
-            {
-                string[] lines = File.ReadAllLines(filePath);
-
-                if (lines.Length == 0)
-                {
-                    Console.WriteLine($"File '{filePath}' is empty.");
+                Console.WriteLine("Enter file name to load(0 to leave):");
+                 filePath = Console.ReadLine().Trim();
+                
+                
+               
+                if (filePath == "0") {
                     Console.WriteLine("Returning to main menu...");
                     Console.WriteLine("Enter your choice");
                     return;
                 }
-
-                products = new string[0];
-                prices = new double[0];
-
-                foreach (string line in lines)
+                filePath = filePath + ".txt";
+                if (!File.Exists(filePath))
                 {
-                    string[] parts = line.Split(" « ");
-                    if (parts.Length == 2)
+                    Console.WriteLine($"File '{filePath}' does not exist.");
+                    
+                    continue;
+                }
+                else
+                {
+                    try
                     {
-                        Array.Resize(ref products, products.Length + 1);
-                        Array.Resize(ref prices, prices.Length + 1);
-                        products[products.Length - 1] = parts[0];
-                        prices[prices.Length - 1] = double.Parse(parts[1]);
+                        string[] lines = File.ReadAllLines(filePath);
+
+                        if (lines.Length == 0)
+                        {
+                            Console.WriteLine($"File '{filePath}' is empty.");
+                            Console.WriteLine("Returning to main menu...");
+                            Console.WriteLine("Enter your choice");
+                            return;
+                        }
+
+                        products = new string[0];
+                        prices = new double[0];
+
+                        foreach (string line in lines)
+                        {
+                            string[] parts = line.Split(" « ");
+                            if (parts.Length == 2)
+                            {
+                                Array.Resize(ref products, products.Length + 1);
+                                Array.Resize(ref prices, prices.Length + 1);
+                                products[products.Length - 1] = parts[0];
+                                prices[prices.Length - 1] = double.Parse(parts[1]);
+                            }
+                        }
+
+                        Console.WriteLine($"Data loaded successfully from '{filePath}'.");
+                        Console.WriteLine("Invalid Input");
+                        Console.WriteLine("Enter your choice");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error loading file: " + ex.Message);
+                        Console.WriteLine("Returning to main menu...");
+                        Console.WriteLine("Enter your choice");
+                        return;
                     }
                 }
-
-                Console.WriteLine($"Data loaded successfully from '{filePath}'.");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error loading file: " + ex.Message);
-                Console.WriteLine("Returning to main menu...");
-                Console.WriteLine("Enter your choice");
-                return ;
-            }
+            
         }
 
 
