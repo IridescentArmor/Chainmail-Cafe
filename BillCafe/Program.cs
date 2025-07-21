@@ -6,6 +6,7 @@ namespace BillCafe
 {
     internal class Program
     {
+    
         private static string[] products = new string[0];
         private static double[] prices = new double[0];
         private static double tipAmount = 0;
@@ -316,8 +317,7 @@ namespace BillCafe
                     default:
                         {
                             Console.WriteLine("An error has occured.");
-                            Console.WriteLine("Returning to main menu...");
-                            Console.WriteLine("Enter your choice");
+                          
                             break;
                         }
                 }
