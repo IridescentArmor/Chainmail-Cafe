@@ -187,16 +187,31 @@ namespace BillCafe
 
             Console.WriteLine("\n0. Cancel");
             Console.WriteLine(new string('-', 40));
+            int choice;
 
-            Console.Write("Enter the number of the item to delete: ");
-            string input = Console.ReadLine();
-            if (!int.TryParse(input, out int choice) || choice < 0 || choice > products.Length)
+
+            while (true)
+            {
+                Console.Write("Enter the number of the item to delete: ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out choice))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
+            
+            if ( choice < 0 || choice > products.Length)
             {
                 Console.WriteLine("Invalid input. Operation cancelled.");
                 Console.WriteLine("Returning to main menu...");
                 Console.WriteLine("Enter your choice");
                 return;
             }
+          
 
             if (choice == 0)
             {
@@ -314,23 +329,22 @@ namespace BillCafe
             {
                 case 1:
                     {
-
+                        int percentType;
                         Console.WriteLine("Enter percent or choose from pattern ");
                         Console.WriteLine("1 - 10%");
                         Console.WriteLine("2 - 25%");
                         Console.WriteLine("3 - 30%");
                         Console.WriteLine("4 - Personal Input");
-                        Console.WriteLine("Enter your choice");
-                        
-                            string input = Console.ReadLine();
-                            if (!int.TryParse(input, out int percentType))
-                            {
-                                Console.WriteLine("Invalid input.");
-                                Console.WriteLine("Returning to main menu...");
-                                Console.WriteLine("Enter your choice");
-                                return;
+                        while (true)
+                        {
+                            Console.WriteLine("Enter your choice");
 
-                            }
+                            string input = Console.ReadLine();
+                            if (int.TryParse(input, out percentType))
+                                break;
+                            Console.WriteLine("Invalid input. Try again.");
+                            
+                        }
                         
                    
                         int percent = 0;
@@ -384,7 +398,7 @@ namespace BillCafe
                         do
                         {
 
-                            Console.WriteLine("Enter tip amount ");
+                            
                             while (true)
                             {
                                 Console.WriteLine("Enter tip amount:");
@@ -494,14 +508,15 @@ namespace BillCafe
 
             if (File.Exists(filePath))
             {
+                int overwrite;
+                while (true) { 
                 Console.WriteLine($"File '{filePath}' exists. Overwrite? 1 = yes | 2 = no.");
                 string input = Console.ReadLine();
-                if (!int.TryParse(input, out int overwrite))
+                if (int.TryParse(input, out overwrite))
                 {
-                    Console.WriteLine("Invalid input. Saving cancelled.");
-                    Console.WriteLine("Returning to main menu...");
-                    Console.WriteLine("Enter your choice");
-                    return;
+                   break;
+                }
+                    Console.WriteLine("Invalid input. Try again.");
                 }
 
                 if (overwrite == 2)
