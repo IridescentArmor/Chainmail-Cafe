@@ -44,7 +44,13 @@ namespace BillCafe
             {
                 try
                 {
-                    choice = Convert.ToInt32(Console.ReadLine());
+                    string input = Console.ReadLine();
+                    if (!int.TryParse(input, out choice))
+                    {
+                        Console.WriteLine("Invalid input. Please enter a number.");
+                        continue;
+                    }
+
                     switch (choice)
                     {
                         case 1:
@@ -120,28 +126,32 @@ namespace BillCafe
                 }
 
             } while (productName.Length < 3 || productName.Length > 20 || string.IsNullOrWhiteSpace(productName));
-
-            do
+            while (true)
             {
                 Console.WriteLine("Enter product price");
-                price = Convert.ToDouble(Console.ReadLine());
-            } while (price < 0);
-            try
+                string input = Console.ReadLine();
+                if (double.TryParse(input, out price) && price >= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid price. Try again.");
+                }
+            }
+                try
             {
-
                 int productsQuantity = products.Length;
                 Array.Resize(ref prices, productsQuantity + 1);
                 Array.Resize(ref products, productsQuantity + 1);
                 products[productsQuantity] = productName;
                 prices[productsQuantity] = price;
-                Console.WriteLine("Adding item was successfull.");
-
+                Console.WriteLine("Adding item was successful.");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error while adding the product " + ex.Message);
             }
-           
         }
         static void DeleteProduct()
         {
@@ -243,7 +253,13 @@ namespace BillCafe
             do
             {
                 Console.WriteLine("Enter your choice");
-                int tipMethod = Convert.ToInt32(Console.ReadLine());
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out int tipMethod))
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                    continue;
+                }
+
                 switch (tipMethod) {
                     case 0:
                         {
@@ -251,20 +267,11 @@ namespace BillCafe
                             return;
                         }
                     case 1:
-                        { 
-                            TipAdding(tipMethod); 
-                            break;
-                        }
                     case 2:
-                        {
-                            TipAdding(tipMethod);
-                            break;
-                        }
                     case 3:
-                        {
-                            TipAdding(tipMethod);
-                            break;
-                        }
+                        TipAdding(tipMethod);
+                        return; 
+
                     default:
                         {
                             Console.WriteLine("An error has occured.");
@@ -285,7 +292,12 @@ namespace BillCafe
                         Console.WriteLine("3 - 30%");
                         Console.WriteLine("4 - Personal Input");
                         Console.WriteLine("Enter your choice");
-                        int percentType = Convert.ToInt32(Console.ReadLine());
+                        string input = Console.ReadLine();
+                        if (!int.TryParse(input, out int percentType))
+                        {
+                            Console.WriteLine("Invalid input. Try again.");
+                            return;
+                        }
                         int percent = 0;
                         switch (percentType)
                         {
@@ -309,7 +321,15 @@ namespace BillCafe
                                     do
                                     {
                                         Console.WriteLine("Enter tip amount: ");
-                                        percent = Convert.ToInt32(Console.ReadLine());
+                                        while (true)
+                                        {
+                                            Console.WriteLine("Enter tip amount:");
+                                            string percentInput = Console.ReadLine();
+                                            if (int.TryParse(percentInput, out percent) && percent >= 0)
+                                                break;
+                                            Console.WriteLine("Invalid percentage. Try again.");
+                                        }
+
                                     } while (percent < 0);
                                     break;
                                 }
@@ -329,7 +349,15 @@ namespace BillCafe
                         {
 
                             Console.WriteLine("Enter tip amount ");
-                            tipAmount = Convert.ToDouble(Console.ReadLine());
+                            while (true)
+                            {
+                                Console.WriteLine("Enter tip amount:");
+                                string tipInput = Console.ReadLine();
+                                if (double.TryParse(tipInput, out tipAmount) && tipAmount >= 0)
+                                    break;
+                                Console.WriteLine("Invalid amount. Try again.");
+                            }
+
 
                         } while (tipAmount < 0);
                         Console.WriteLine("Tip added " + tipAmount);
@@ -419,7 +447,13 @@ namespace BillCafe
             if (File.Exists(filePath))
             {
                 Console.WriteLine($"File '{filePath}' exists. Overwrite? 1 = yes | 2 = no.");
-                int overwrite = Convert.ToInt32(Console.ReadLine());
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out int overwrite))
+                {
+                    Console.WriteLine("Invalid input. Saving cancelled.");
+                    return;
+                }
+
                 if (overwrite == 2)
                 {
                     Console.WriteLine("Saving cancelled.");
