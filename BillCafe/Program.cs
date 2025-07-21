@@ -194,9 +194,16 @@ namespace BillCafe
                 {
                     Console.Write("Enter the number of the item to delete: ");
                     string input = Console.ReadLine();
-                    if (int.TryParse(input, out choice))
+                    if (int.TryParse(input, out choice ) )
                     {
-                        break;
+                    if (choice < 0 || choice > products.Length)
+                    {
+                        Console.WriteLine("Invalid input.");
+                        
+                        
+                       
+                    }else
+                    break;
                     }
                     else
                     {
@@ -204,13 +211,7 @@ namespace BillCafe
                     }
                 }
 
-                if (choice < 0 || choice > products.Length)
-                {
-                    Console.WriteLine("Invalid input. Operation cancelled.");
-                    Console.WriteLine("Returning to main menu...");
-                    Console.WriteLine("Enter your choice");
-                    return;
-                }
+              
 
 
                 if (choice == 0)
@@ -483,6 +484,8 @@ namespace BillCafe
             Console.WriteLine("{0,-40} {1,10:C}", "Tip Amount:", tipAmount);
             Console.WriteLine("{0,-40} {1,10:C}", "GST Amount:", GST());
             Console.WriteLine("{0,-40} {1,10:C}", "Total Amount:", TotalPrice());
+            Console.WriteLine("Returning to main menu...");
+            Console.WriteLine("Enter your choice");
         }
         private static void SaveToFile()
         {
