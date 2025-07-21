@@ -355,7 +355,7 @@ namespace BillCafe
                                 {
                                     do
                                     {
-                                        Console.WriteLine("Enter tip amount: ");
+                                      
                                         while (true)
                                         {
                                             Console.WriteLine("Enter tip amount:");
