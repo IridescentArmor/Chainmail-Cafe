@@ -98,7 +98,6 @@ namespace BillCafe
                         default:
                             {
                                 Console.WriteLine("Invalid Input");
-                                Console.WriteLine("Returning to main menu...");
                                 Console.WriteLine("Enter your choice");
                                 break;
                             }
@@ -135,7 +134,7 @@ namespace BillCafe
                 string input = Console.ReadLine();
                 if (input.Contains(","))
                 {
-                  input =  input.Replace(",", ".");
+                    input = input.Replace(",", ".");
                 }
                 if (double.TryParse(input, out price) && price >= 0)
                 {
@@ -146,8 +145,8 @@ namespace BillCafe
                     Console.WriteLine("Invalid price. Try again.");
                 }
             }
-                
-                try
+
+            try
             {
                 int productsQuantity = products.Length;
                 Array.Resize(ref prices, productsQuantity + 1);
@@ -161,103 +160,104 @@ namespace BillCafe
             catch (Exception ex)
             {
                 Console.WriteLine("Error while adding the product " + ex.Message);
-            }
-        }
-        static void DeleteProduct()
-        {
-            if (products.Length == 0)
+            } }
+
+            static void DeleteProduct()
             {
-                Console.WriteLine("There are no items to delete.");
-                Console.WriteLine("Returning to main menu...");
-                Console.WriteLine("Enter your choice");
-                return;
-            }
-
-            if (tipAmount != 0)
-            {
-                Console.WriteLine("Tip will be reset to 0.");
-            }
-
-            Console.WriteLine("List of items:");
-            Console.WriteLine(new string('-', 40));
-
-            for (int i = 0; i < products.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}. {products[i]} - {prices[i]:F2}$");
-            }
-
-            Console.WriteLine("\n0. Cancel");
-            Console.WriteLine(new string('-', 40));
-            int choice;
-
-
-            while (true)
-            {
-                Console.Write("Enter the number of the item to delete: ");
-                string input = Console.ReadLine();
-                if (int.TryParse(input, out choice))
+                if (products.Length == 0)
                 {
-                    break;
+                    Console.WriteLine("There are no items to delete.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
+                    return;
                 }
-                else
+
+                if (tipAmount != 0)
                 {
-                    Console.WriteLine("Invalid input.");
+                    Console.WriteLine("Tip will be reset to 0.");
                 }
+
+                Console.WriteLine("List of items:");
+                Console.WriteLine(new string('-', 40));
+
+                for (int i = 0; i < products.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {products[i]} - {prices[i]:F2}$");
+                }
+
+                Console.WriteLine("\n0. Cancel");
+                Console.WriteLine(new string('-', 40));
+                int choice;
+
+
+                while (true)
+                {
+                    Console.Write("Enter the number of the item to delete: ");
+                    string input = Console.ReadLine();
+                    if (int.TryParse(input, out choice))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                    }
+                }
+
+                if (choice < 0 || choice > products.Length)
+                {
+                    Console.WriteLine("Invalid input. Operation cancelled.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
+                    return;
+                }
+
+
+                if (choice == 0)
+                {
+                    Console.WriteLine("Deletion cancelled.");
+                    Console.WriteLine("Returning to main menu...");
+                    Console.WriteLine("Enter your choice");
+                    return;
+                }
+
+                string result = RemoveProduct(choice - 1);
+                Console.WriteLine(result);
+
+                if (products.Length > 0)
+                {
+                    TipMethod();
+                }
+
             }
-            
-            if ( choice < 0 || choice > products.Length)
+            static string RemoveProduct(int index)
             {
-                Console.WriteLine("Invalid input. Operation cancelled.");
-                Console.WriteLine("Returning to main menu...");
-                Console.WriteLine("Enter your choice");
-                return;
+                if (index < 0 || index >= products.Length)
+                {
+                    Console.WriteLine("Invalid selection.");
+                    Console.WriteLine("Returning to main menu...");
+
+                    return "Enter your choice";
+                }
+
+                string deletedName = products[index];
+                double deletedCost = prices[index];
+
+                for (int i = index; i < products.Length - 1; i++)
+                {
+                    products[i] = products[i + 1];
+                    prices[i] = prices[i + 1];
+                }
+
+                Array.Resize(ref products, products.Length - 1);
+                Array.Resize(ref prices, prices.Length - 1);
+
+
+
+
+                return $"Deleted '{deletedName}' with price {deletedCost:F2}$.";
             }
-          
-
-            if (choice == 0)
-            {
-                Console.WriteLine("Deletion cancelled.");
-                Console.WriteLine("Returning to main menu...");
-                Console.WriteLine("Enter your choice");
-                return;
-            }
-
-            string result = RemoveProduct(choice - 1);
-            Console.WriteLine(result);
-
-            if (products.Length > 0)
-            {
-                TipMethod();
-            }
-
-        }
-        static string RemoveProduct(int index)
-        {
-            if (index < 0 || index >= products.Length)
-            {
-                Console.WriteLine("Invalid selection.");
-                Console.WriteLine("Returning to main menu...");
-                
-                return "Enter your choice";
-            }
-
-            string deletedName = products[index];
-            double deletedCost = prices[index];
-
-            for (int i = index; i < products.Length - 1; i++)
-            {
-                products[i] = products[i + 1];
-                prices[i] = prices[i + 1];
-            }
-
-            Array.Resize(ref products, products.Length - 1);
-            Array.Resize(ref prices, prices.Length - 1);
-
-
-
-
-            return $"Deleted '{deletedName}' with price {deletedCost:F2}$.";
-        }
+        
         private static void ClearAll()
         {
             if (products.Length == 0)
@@ -294,7 +294,7 @@ namespace BillCafe
             {
                 Console.WriteLine("Enter your choice");
                 string input = Console.ReadLine();
-                if (!int.TryParse(input, out int tipMethod))
+                if (!int.TryParse(input, out int tipMethod ))
                 {
                     Console.WriteLine("Invalid input. Try again.");
                     continue;
@@ -340,7 +340,7 @@ namespace BillCafe
                             Console.WriteLine("Enter your choice");
 
                             string input = Console.ReadLine();
-                            if (int.TryParse(input, out percentType))
+                            if (int.TryParse(input, out percentType) && percentType > 0 && percentType <= 4)
                                 break;
                             Console.WriteLine("Invalid input. Try again.");
                             
@@ -499,7 +499,7 @@ namespace BillCafe
             {
                 do
                 {
-                    Console.WriteLine("Input does not fit into rules.");
+                    Console.WriteLine("Input does not fit into rules (1 to 10 symbols).");
                     Console.WriteLine("Enter file to save");
                     filePath = Console.ReadLine();
                 } while (filePath.Length > 10 || filePath.Length < 1);
@@ -510,22 +510,23 @@ namespace BillCafe
             {
                 int overwrite;
                 while (true) { 
-                Console.WriteLine($"File '{filePath}' exists. Overwrite? 1 = yes | 2 = no.");
+                Console.WriteLine($"File '{filePath}' exists. Overwrite? 1 - yes 2 - no");
                 string input = Console.ReadLine();
-                if (int.TryParse(input, out overwrite))
+                    if (int.TryParse(input, out overwrite) &&  overwrite == 2)
+                    {
+                        Console.WriteLine("Saving cancelled.");
+                        Console.WriteLine("Returning to main menu...");
+                        Console.WriteLine("Enter your choice");
+                        return;
+                    }
+                    if ( overwrite == 1)
                 {
                    break;
                 }
                     Console.WriteLine("Invalid input. Try again.");
                 }
 
-                if (overwrite == 2)
-                {
-                    Console.WriteLine("Saving cancelled.");
-                    Console.WriteLine("Returning to main menu...");
-                    Console.WriteLine("Enter your choice");
-                    return;
-                }
+                
             }
 
             try
@@ -556,6 +557,8 @@ namespace BillCafe
             if (!File.Exists(filePath))
             {
                 Console.WriteLine($"File '{filePath}' does not exist.");
+                Console.WriteLine("Returning to main menu...");
+                Console.WriteLine("Enter your choice");
                 return;
             }
 
