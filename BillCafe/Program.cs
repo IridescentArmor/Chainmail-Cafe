@@ -373,7 +373,7 @@ namespace BillCafe
                                       
                                         while (true)
                                         {
-                                            Console.WriteLine("Enter tip amount:");
+                                            Console.WriteLine("Enter tip percentage");
                                             string percentInput = Console.ReadLine();
                                             if (int.TryParse(percentInput, out percent) && percent >= 0)
                                                 break;
@@ -608,8 +608,9 @@ namespace BillCafe
                         }
 
                         Console.WriteLine($"Data loaded successfully from '{filePath}'.");
-                        Console.WriteLine("Invalid Input");
+                        Console.WriteLine("Returning to main menu...");
                         Console.WriteLine("Enter your choice");
+                        return;
                     }
                     catch (Exception ex)
                     {
